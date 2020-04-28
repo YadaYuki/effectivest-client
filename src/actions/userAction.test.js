@@ -1,6 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as actions from "./userAction";
+import axios from "axios";
 const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 var initialState = {
@@ -10,6 +11,7 @@ var initialState = {
     email: undefined,
     password: undefined,
     password_again: undefined,
+    error: false,
 };
 describe("userAction test", () => {
     test("setUsername", () => {
@@ -31,12 +33,14 @@ describe("userAction test", () => {
     test("loginFailed", () => {
         expect(actions.loginFailed()).toEqual({ type: "LOGIN_FAILED", payload: undefined });
     });
+    // write code for get user_token
+
     test("fetchLogin Success", () => {
         const username = "yadayuki";
         const password = "password";
         const store = mockStore(initialState);
         return store.dispatch(actions.fetchLogin(username, password)).then(() => {
-            expect(store.getActions()[0].type).toEqual("LOGIN_SUCCESS");
+            expect(store.getActions()[0].type).toEqual(actions.loginSuccess().type);
         });
     });
     test("fetchLogin Failed", () => {
@@ -47,6 +51,8 @@ describe("userAction test", () => {
             expect(store.getActions()[0].type).toEqual("LOGIN_FAILED");
         });
     });
+
+    var user_token;
     test("fetchRegist success", () => {
         const username = "yadayuki1";
         const email = "email";
@@ -54,6 +60,7 @@ describe("userAction test", () => {
         const store = mockStore({});
         return store.dispatch(actions.fetchRegist(username, email, password)).then(() => {
             expect(store.getActions()[0].type).toEqual("LOGIN_SUCCESS");
+            user_token = store.getActions()[0].payload.user_token;
         });
     });
     test("fetchRegist Failed", () => {
@@ -65,25 +72,52 @@ describe("userAction test", () => {
             expect(store.getActions()[0].type).toEqual("LOGIN_FAILED");
         });
     });
-    test("fetchUserInfo ", () => {
-        const store = mockStore({...initialState,user_token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1ODc5NjcxNTh9.OTIDcnWmEm1RshAFhHaeOnvH7u2-tEftuVgjwF9_d38"});
+    test("fetchUserInfo ", async () => {
+        const store = mockStore({ ...initialState, user_token });
         return store.dispatch(actions.fetchUserInfo()).then(() => {
             expect(store.getActions()[0].type).toEqual("SET_EMAIL");
             expect(store.getActions()[1].type).toEqual("SET_USERNAME");
         });
     });
-    // test("fetchUpdatePassword Success",()=>{
-    //     const password = "password";
-    //     const new_password = "password"
-    //     const expectedActions = [
-    //         {type:"START_REQUEST"},{type:"SET_PASSWORD",payload:{password}}
-    //     ];
-    //     const store = mockStore({});
-    //     return store.dispatch(actions.fetchUpdatePassword(password,new_password)).then(()=>{
-    //         expect(store.getActions()).toEqual(expectedActions);
-    //     });
-    // });
-    // test("fetchUpdateUser Failure",()=>{
-    //     const 
-    // });
+    test("fetchUpdatePassword Success", () => {
+        const password = "password";
+        const new_password = "password";
+        const expectedActions = [
+            { type: "SET_PASSWORD", payload: { password } }
+        ];
+        const store = mockStore({ ...initialState, user_token });
+        return store.dispatch(actions.fetchUpdatePassword(password, new_password)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+    test("fetchUpdatePassword Error", () => {
+        const password = "mistake";
+        const new_password = "password";
+        const expectedActions = [];
+        const store = mockStore({ ...initialState, user_token });
+        return store.dispatch(actions.fetchUpdatePassword(password, new_password)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+    test("fetchUpdateUser ", () => {
+        const username = "yadayuki1";
+        const email = "updated@email.com";
+        const store = mockStore({ ...initialState, user_token });
+        const expectedActions = [
+            { type: "SET_USERNAME", payload: { username } }, { type: "SET_EMAIL", payload: { email } }
+        ];
+        return store.dispatch(actions.fetchUpdateUser(username, email)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+        });
+    });
+    test("fetchUpdateUser Failure", () => {
+        const username = "yadayuki1";
+        const email = "updated@email.com";
+        const store = mockStore(initialState);
+        const expectedActions = [];
+        return store.dispatch(actions.fetchUpdateUser(username, email)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+        });
+    });
+    
 });

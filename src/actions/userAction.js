@@ -64,3 +64,30 @@ export const fetchUserInfo = ()=>{
         }
     }
 }
+export const fetchUpdatePassword = (password,new_password)=>{
+    return async(dispatch,getState)=>{
+        try{
+            const user_token = getState().user_token;
+            const response = await axios.put("/update/password",{password,new_password,user_token});
+            if (response.data.is_updated){
+                dispatch(setPassword(new_password));
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
+}
+export const fetchUpdateUser = (username,email) => {
+    return async (dispatch,getState)=>{
+        try{
+            const user_token = getState().user_token;
+            const response = await axios.put("/update/",{username,email,user_token});
+            if(response.data.is_updated){
+                dispatch(setUsername(username));
+                dispatch(setEmail(email));
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
+}
