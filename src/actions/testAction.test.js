@@ -16,12 +16,16 @@ describe("testAction Test(sync)",()=>{
         expect(actions.requestFailed()).toEqual({type:"REQUEST_FAILED",payload:{}})
     });
     test("addTest",()=>{
-        const test = {test_id:1,testname:"testname",description:"description"};
-        expect(actions.addTest(test)).toEqual({type:"ADD_TEST",payload:{test}});
+        const test_id=1;
+        const testname="testname"
+        const description="description"
+        expect(actions.addTest(test_id,testname,description)).toEqual({type:"ADD_TEST",payload:{test_id,testname,description}});
     });
     test("updateTest",()=>{
-        const test = {test_id:1,testname:"testname",description:"description"};
-        expect(actions.updateTest(test)).toEqual({type:"UPDATE_TEST",payload:{test}});
+        const test_id=1
+        const testname="testname"
+        const description="description"
+        expect(actions.updateTest(test_id,testname,description)).toEqual({type:"UPDATE_TEST",payload:{test_id,testname,description}});
     });
     test("deleteTest",()=>{
         const test_id = 1;
@@ -40,6 +44,62 @@ describe("testAction test (async)",()=>{
     test("fetchGetTest Failed",()=>{
         const store = mockStore({User:{},Test:{}});
         return store.dispatch(actions.fetchGetTest(user_token)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("REQUEST_FAILED");
+        });
+    });
+    var test_id;
+    test("fetchAddTest",()=>{
+        const store = mockStore({User:{user_token},Test:{}});
+        const testname = "sampleTest";
+        const description = "testtest";
+        return store.dispatch(actions.fetchAddTest(testname,description)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("ADD_TEST");
+            console.log(JSON.stringify(store.getActions()));
+            test_id = store.getActions()[1].payload.test_id;
+        });
+    });
+    test("fetchAddTest Failed",()=>{
+        const store = mockStore({User:{},Test:{}});
+        const testname = "sampleTest";
+        const description = "testtest";
+        return store.dispatch(actions.fetchAddTest(testname,description)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("REQUEST_FAILED");
+        });
+    });
+    test("fetchUpdateTest",()=>{
+        const store = mockStore({User:{user_token},Test:{}});
+        const test_id = 1;
+        const testname = "test";
+        const description = "testtest";
+        return store.dispatch(actions.fetchUpdateTest(test_id,testname,description)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("UPDATE_TEST");
+        });
+    });
+    test("fetchUpdateTest failed",()=>{
+        const store = mockStore({User:{},Test:{}});
+        const test_id = 1;
+        const testname = "test";
+        const description = "testtest";
+        return store.dispatch(actions.fetchUpdateTest(test_id,testname,description)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("REQUEST_FAILED");
+        });
+    });
+    test("fetchDeleteTest",()=>{
+        const store = mockStore({User:{user_token},Test:{}});
+        return store.dispatch(actions.fetchDeleteTest(test_id)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("DELETE_TEST");
+        });
+    });
+    test("fetchDeleteTest Failed",()=>{
+        const store = mockStore({User:{},Test:{}});
+        const test_id = 1;
+        return store.dispatch(actions.fetchDeleteTest(test_id)).then(()=>{
             expect(store.getActions()[0].type).toEqual("START_REQUEST");
             expect(store.getActions()[1].type).toEqual("REQUEST_FAILED");
         });

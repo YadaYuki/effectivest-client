@@ -19,16 +19,16 @@ export function requestFailed() {
         payload: {}
     };
 };
-export function addTest(test) {
+export function addTest(test_id,testname,description) {
     return {
         type: "ADD_TEST",
-        payload: { test }
+        payload: { test_id,testname,description}
     };
 };
-export function updateTest(test) {
+export function updateTest(test_id,testname,description) {
     return {
         type: "UPDATE_TEST",
-        payload: { test }
+        payload: { test_id,testname,description }
     }
 }
 export function deleteTest(test_id) {
@@ -37,6 +37,7 @@ export function deleteTest(test_id) {
         payload: { test_id }
     };
 };
+
 export function fetchGetTest() {
     return async (dispatch, getState) => {
         dispatch(startRequest());
@@ -51,6 +52,56 @@ export function fetchGetTest() {
                 dispatch(requestFailed());
             }
         } catch (err) {
+            dispatch(requestFailed());
+        }
+    }
+}
+export function fetchAddTest(testname,description){
+    return async(dispatch,getState)=>{
+        dispatch(startRequest());
+        try{
+            const user_token = getState().User.user_token;
+            const response = await axios.post("/add",{testname,description,user_token});
+            const test_id = response.data.test_id;
+            if(test_id){//if not undefined 
+                dispatch(addTest(test_id,testname,description));
+            }else{
+                dispatch(requestFailed());
+            }
+            
+        }catch(err){
+            dispatch(requestFailed());
+        }
+    }
+}
+export function fetchUpdateTest(test_id,testname,description){
+    return async(dispatch,getState)=>{
+        dispatch(startRequest());
+        try{
+            const user_token = getState().User.user_token;
+            const response = await axios.put("/update",{user_token,test_id,testname,description});
+            if(response.data.is_updated == true){
+                dispatch(updateTest({test_id,testname,description}));
+            }else{
+                dispatch(requestFailed());
+            }
+        }catch(err){
+            dispatch(requestFailed());
+        }
+    }
+}
+export function fetchDeleteTest(test_id){
+    return async(dispatch,getState)=>{
+        dispatch(startRequest());
+        try{
+            const user_token = getState().User.user_token;
+            const response = await axios.delete("/delete",{data:{user_token,test_id}});
+            if(response.data.is_deleted){
+                dispatch(deleteTest(test_id));
+            }else{
+                dispatch(requestFailed());
+            }
+        }catch(err){
             dispatch(requestFailed());
         }
     }
