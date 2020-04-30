@@ -37,11 +37,12 @@ export function Test(state = initialState,action){
 }
 
 function updateTest(arr,test){
-    for(let i in arr){
-        if (arr[i].test_id == test.test_id){
-            arr[i] = test;
+    let arr_cp = arr.slice();
+    for(let i in arr_cp){
+        if (arr_cp[i].test_id == test.test_id){
+            arr_cp[i] = test;
             break;
         }
     }
-    return arr;
+    return arr_cp;
 }

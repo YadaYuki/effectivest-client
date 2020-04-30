@@ -7,10 +7,10 @@ export function startRequest(test){
         payload:{test},
     };
 }
-export function recieveQuestion(question){
+export function recieveQuestion(questions){
     return {
         type:"RECIEVE_QUESTION",
-        payload:{question}
+        payload:{questions}
     }
 }
 export function requestFailed(){
@@ -98,6 +98,37 @@ export function fetchUpdateCorrectRate(question_id_arr){
                 dispatch(requestFailed());
             }
         }catch(err){
+            dispatch(requestFailed());
+        }
+    }
+}
+export function fetchGetAllQuestion(test_id){
+    return async(dispatch,getState)=>{
+        const test_arr = getState().Test.test;
+        const test = test_arr.find((test)=>{return test.test_id === test_id});
+        dispatch(startRequest(test));
+        try{
+            const params = qs.stringify({test_id,is_test:false});
+            const response = await axios.get(`/get/all?${params}`);
+            dispatch(recieveQuestion(response.data.question));
+            // const response 
+        }catch(err){
+            console.log(err);
+            dispatch(requestFailed());
+        }
+    }
+}
+export function fetchGetQuestion(test_id,mode,question_num){
+    return async(dispatch,getState)=>{
+        const test_arr = getState().Test.test;
+        const test = test_arr.find((test)=>{return test.test_id === test_id});
+        dispatch(startRequest(test));
+        try{
+            const params = qs.stringify({test_id,is_test:true,question_num});
+            const response = await axios.get(`/get/${mode}/?${params}`);
+            dispatch(recieveQuestion(response.data));
+        }catch(err){
+            console.log(err);
             dispatch(requestFailed());
         }
     }

@@ -84,4 +84,39 @@ describe("questionAction Test(async)",()=>{
             expect(store.getActions()[0].type).toEqual("REQUEST_FAILED");
         });
     });
+    it("fetchGetAllQuestion All",()=>{
+        const store = mockStore({User:{},Test:{test}});
+        const test_id = 1
+        // get question all
+        return store.dispatch(actions.fetchGetAllQuestion(test_id)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
+        });
+    });
+    it("fetchGetQuestion All",()=>{
+        const store = mockStore({User:{},Test:{test}});
+        const test_id=1,mode="all";
+        return store.dispatch(actions.fetchGetQuestion(test_id,mode)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
+        });
+    });
+    it("fetchGetQuestion random",()=>{
+        const store = mockStore({User:{},Test:{test}});
+        const test_id=1,mode="random",question_num=10;
+        return store.dispatch(actions.fetchGetQuestion(test_id,mode,question_num)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
+            expect(store.getActions()[1].payload.question.length).toEqual(question_num);
+        });
+    });
+    it("fetchGetQuestion week",()=>{
+        const store = mockStore({User:{},Test:{test}});
+        const test_id=1,mode="week",question_num=10;
+        return store.dispatch(actions.fetchGetQuestion(test_id,mode,question_num)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
+            expect(store.getActions()[1].payload.question.length).toEqual(question_num);
+        });
+    });
 });
