@@ -37,23 +37,68 @@ export function deleteQuestion(question_id){
         payload:{question_id}
     }
 }
-export function fetchGetQuestion(test_id,testmode,question_num,is_test=true){
-    return async (dispatch,getState) => {
-        // get test from testreducer store
-        const test = getState().Test.test.find(t=>(t.id === test_id));
-        console.log(JSON.stringify(getState().Test.test));
-        if(typeof test === "undefined"){
-            requestFailed();
-            return;
-        }
+
+export function fetchAddQuestion(test_id,question,answer){
+    return async(dispatch,getState)=>{
+        //find test by id
+        const test_arr = getState().Test.test;
+        const test = test_arr.find((test)=>{return test.test_id === test_id});
         dispatch(startRequest(test));
-        // fetch question from api
         try{
-            const params = qs.stringify({test_id,question_num,is_test});
-            const response = await axios.get(`/get/${testmode}?${params}`);
-            recieveQuestion(response.data);
+            const user_token = getState().User.user_token;
+            const response = await axios.post("/add",{test_id,question,answer,user_token});
+            const question_id = response.data.question_id;
+            if(question_id){
+                dispatch(addQuestion(question_id,question,answer));
+            }
         }catch(err){
-            requestFailed();
+            dispatch(requestFailed());
+        }
+    };
+};
+
+export function fetchUpdateQuestion(question_id,question,answer){
+    return async(dispatch,getState)=>{
+        try{
+            const user_token = getState().User.user_token;
+            const response = await axios.put("/update",{user_token,question_id,question,answer});
+            if(response.data.is_updated === true){
+                dispatch(updateQuestion(question_id,question,answer));
+            }else{
+                dispatch(requestFailed());
+            }
+        }catch(err){
+            dispatch(requestFailed());     
+   }
+    }
+}
+export function fetchDeleteQuestion(question_id){
+    return async(dispatch,getState)=>{
+        try{
+            const user_token = getState().User.user_token;
+            const response = await axios.delete("/delete",{data:{user_token,question_id}});
+            if(response.data.is_deleted === true){
+                dispatch(deleteQuestion(question_id));
+            }else{
+                dispatch(requestFailed());
+            }
+        }catch(err){
+            dispatch(requestFailed());
+        }
+    }
+}
+export function fetchUpdateCorrectRate(question_id_arr){
+    return async(dispatch,getState)=>{
+        try{
+            const user_token = getState().User.user_token;
+            const response = await axios.put("/update/correct_time",{user_token,question_id:question_id_arr});
+            if(response.data.is_updated === true){
+
+            }else{
+                dispatch(requestFailed());
+            }
+        }catch(err){
+            dispatch(requestFailed());
         }
     }
 }

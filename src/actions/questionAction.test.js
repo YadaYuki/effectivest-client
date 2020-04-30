@@ -28,32 +28,60 @@ describe("questionAction Test(sync)",()=>{
         expect(actions.deleteQuestion(question_id)).toEqual({type:"DELETE_QUESTION",payload:{question_id}});
     });
 });
+var user_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1ODgwNTcwMzV9.VThifnlBFc8WAf8AAVMksoiBVL7ADvT26FK8CrG9t3M";
+var test = [{test_id:3,testname:"testname",description:"description"},{test_id:4,testname:"testname",description:"description"}];
 describe("questionAction Test(async)",()=>{
-    it("fetchGetQuestion all",()=>{
-        const test_id=3, testmode = "all",question_num = 5;
-        const store = mockStore({Test: {test:[{test_id:3,testname:"testname",description:"description"},{test_id:4,testname:"testname",description:"description"}]}});
-        return store.dispatch(actions.fetchGetQuestion(test_id,testmode,question_num)).then(()=>{
-            expect(store.getActions()[0]).toEqual({type:"START_REQUEST",payload:{test_id:test_id,testname:"testname",description:"description"}});
-            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
+    var add_question_id; 
+    it("fetchAddQuestion",()=>{
+        const test_id = 1,question="sample",answer="サンプル";
+        const store = mockStore({User:{user_token},Test:{test}});
+        return store.dispatch(actions.fetchAddQuestion(test_id,question,answer)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("ADD_QUESTION");
+            add_question_id = store.getActions()[1].payload.question_id;
         });
     });
-    it("fetchGetQuestion random",()=>{
-        const test_id=3, testmode = "random",question_num = 5;
-        const store = mockStore({Test:{test: [{test_id:3,testname:"testname",description:"description"},{test_id:4,testname:"testname",description:"description"}]}});
-        return store.dispatch(actions.fetchGetQuestion(test_id,testmode,question_num)).then(()=>{
-            expect(store.getActions()[0]).toEqual({type:"START_REQUEST",payload:{test_id:test_id,testname:"testname",description:"description"}});
-            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
-            expect(store.getActions()[1].payload.question.length).toEqual(question_num);
+    it("fetchAddQuestion failed",()=>{
+        const test_id = 1,question="sample",answer="サンプル";
+        const store = mockStore({User:{},Test:{test}});
+        return store.dispatch(actions.fetchAddQuestion(test_id,question,answer)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[1].type).toEqual("REQUEST_FAILED");
         });
     });
-    it("fetchGetQuestion week",()=>{
-        const test_id=3, testmode = "week",question_num = 5;
-        const store = mockStore({Test:{test: [{test_id:3,testname:"testname",description:"description"},{test_id:4,testname:"testname",description:"description"}]}});
-        return store.dispatch(actions.fetchGetQuestion(test_id,testmode,question_num)).then(()=>{
-            expect(store.getActions()[0]).toEqual({type:"START_REQUEST",payload:{test_id:test_id,testname:"testname",description:"description"}});
-            expect(store.getActions()[1].type).toEqual("RECIEVE_QUESTION");
-            expect(store.getActions()[1].payload.question.length).toEqual(question_num);
+    it("fetchUpdateQuestion",()=>{
+        const question_id = 1,question="sample",answer="サンプル";
+        const store = mockStore({User:{user_token}});
+        return store.dispatch(actions.fetchUpdateQuestion(question_id ,question,answer)).then(()=>{
+            // expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[0].type).toEqual("UPDATE_QUESTION");
         });
     });
-
+    it("fetchUppdateQuestion failed",()=>{
+        const question_id = 1,question="sample",answer="サンプル";
+        const store = mockStore({User:{}});
+        return store.dispatch(actions.fetchUpdateQuestion(question_id,question,answer)).then(()=>{
+            // expect(store.getActions()[0].type).toEqual("START_REQUEST");
+            expect(store.getActions()[0].type).toEqual("REQUEST_FAILED");
+        });
+    });
+    it("fetchDeleteQuestion",()=>{
+        const store = mockStore({User:{user_token}});
+        return store.dispatch(actions.fetchDeleteQuestion(add_question_id)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("DELETE_QUESTION");
+        });
+    });
+    it("fetchDeleteQuestion Failed",()=>{
+        const store = mockStore({User:{}});
+        return store.dispatch(actions.fetchDeleteQuestion(add_question_id)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("REQUEST_FAILED");
+        });
+    });
+    it("fetchUpdateCorrectRate Failed",()=>{
+        const store = mockStore({User:{}});
+        const question_id_arr = [1,2,3,4,5,6];
+        return store.dispatch(actions.fetchUpdateCorrectRate(question_id_arr)).then(()=>{
+            expect(store.getActions()[0].type).toEqual("REQUEST_FAILED");
+        });
+    });
 });
