@@ -1,5 +1,3 @@
-import { bindActionCreators } from "redux";
-
 export const initialState = {
     test:undefined,
     results:undefined,
