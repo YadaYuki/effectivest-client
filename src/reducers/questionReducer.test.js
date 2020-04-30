@@ -26,6 +26,5 @@ describe("switch case:",()=>{
         const question_id = 2;
         const deleted =  [{question_id:1,question:"question",answer:"answer"},{question_id:3,question:"question",answer:"answer"}];
         expect(Question({...initialState,questions},actions.deleteQuestion(question_id))).toEqual({...initialState,questions:deleted});
-
     });
 });
