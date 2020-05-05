@@ -5,7 +5,7 @@ export const initialState = {
     email:"yada.yuki@fuji.waseda.jp",
     password:"password",
 };
-export function userReducer(state = initialState,action){
+export default function User(state = initialState,action){
     switch(action.type){
         case "SET_USERNAME":
             return {

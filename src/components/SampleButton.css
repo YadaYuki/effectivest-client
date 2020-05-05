@@ -1,0 +1,19 @@
+button{
+    background-color:blue;
+    border-radius:4px;
+    color:white;
+    transition:width 2s,display 2s;
+    width:40px;
+}
+button span{
+    display: none;
+    transition-delay: 10s;
+}
+button:hover{
+    width:100px;
+    /* background-color:white; */
+    /*spanタグの表示処理を書きたい*/
+}
+button:hover .button_txt{
+    display: inline;
+}
