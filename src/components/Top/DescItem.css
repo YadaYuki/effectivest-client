@@ -1,4 +1,16 @@
-.descItem{
-    margin:0 auto;
-    width:300px;
+.descItem {
+    margin: 10px auto;
+    width: 300px;
+    height:350px;
+    text-align: center;
+}
+
+.descItem p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    color: #000000;
+    mix-blend-mode: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

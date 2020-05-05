@@ -5,8 +5,8 @@ export default function DescItem(props) {
     return (
         <Card className="descItem">
             <CardContent >
-                <img src={props.imgUrl} alt={props.imgAlt} />
-                <h2>{props.description}</h2>
+                <img width="200px" src={props.imgUrl} alt={props.imgAlt} />
+                <p>{props.description}</p>
             </CardContent>
         </Card>
     );
