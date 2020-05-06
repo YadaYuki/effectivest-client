@@ -4,6 +4,7 @@ import correctRateUrl from "./static/correctRate.png";
 import createTestUrl from "./static/createTest.png";
 import resultShowUrl from "./static/resultShow.png"
 import "./DescItems.css";
+
 export default function DescItems() {
     return (
         <div className="descItems">
