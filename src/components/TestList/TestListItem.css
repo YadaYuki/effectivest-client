@@ -1,0 +1,19 @@
+.testListItem {
+    width: 300px;
+    margin: 10px auto;
+    height: 400px;
+    text-align: center;
+}
+.testListItemContent{
+    height:100%;
+}
+.testListItem h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    height:15%;
+}
+.testListItem p{
+    height:40%;
+}

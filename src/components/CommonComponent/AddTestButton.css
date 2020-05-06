@@ -1,0 +1,8 @@
+.addTestButton {
+    background-color: #56CCF2;
+    position: fixed;
+    left:90%;
+}
+.addTestButton:hover svg{
+    fill:black;
+}
