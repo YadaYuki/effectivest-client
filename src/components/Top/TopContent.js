@@ -8,7 +8,7 @@ export default function TopContent(){
         <div>
             <ApplicationDesc />
             <DescItems />
-            <Button classes={{root:"startButton"}}>
+            <Button className="startButton">
                 Let's Start!
             </Button>
         </div>

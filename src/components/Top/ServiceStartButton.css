@@ -1,4 +1,4 @@
-/* button{
-    position: absolute;
-    left:85%;
-} */
+.serviceStartButton{
+    position: fixed;
+    left:87%;
+}
