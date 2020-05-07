@@ -80,7 +80,7 @@ export function fetchUpdateTest(test_id,testname,description){
         try{
             const user_token = getState().User.user_token;
             const response = await axios.put("/update",{user_token,test_id,testname,description});
-            if(response.data.is_updated == true){
+            if(response.data.is_updated === true){
                 dispatch(updateTest({test_id,testname,description}));
             }else{
                 dispatch(requestFailed());

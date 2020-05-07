@@ -1,0 +1,22 @@
+@keyframes fadeIn {
+    from {
+        color: white;
+    }
+    50% {
+        color: black;
+    }
+    to {
+        color: white;
+    }
+}
+
+.loadWrapper {
+    color: white;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.loadWrapper h1 {
+    font-family: Roboto slab;
+}

@@ -2,9 +2,9 @@ export const initialState = {
     test:undefined,
     error:false
 };
-export function Test(state = initialState,action){
+export default function Test(state = initialState,action){
     switch(action.type){
-        case "RECIEVE_DATA":
+        case "RECIEVE_TEST":
             return {
                 ...state,test:action.payload.test
             };
@@ -39,7 +39,7 @@ export function Test(state = initialState,action){
 function updateTest(arr,test){
     let arr_cp = arr.slice();
     for(let i in arr_cp){
-        if (arr_cp[i].test_id == test.test_id){
+        if (arr_cp[i].test_id === test.test_id){
             arr_cp[i] = test;
             break;
         }
