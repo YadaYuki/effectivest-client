@@ -6,6 +6,9 @@ export default class EditContent extends React.Component{
         return (
             <div className="editContent">
                 <EditItem test_id={1} testname={"Sample"}/>
+                <EditItem test_id={1} testname={"Sample"}/>
+                <EditItem test_id={1} testname={"Sample"}/>
+                <EditItem test_id={1} testname={"Sample"}/>
             </div>
         );
     }
