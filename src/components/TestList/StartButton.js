@@ -27,7 +27,7 @@ export default class StartButton extends React.Component{
         return (
             <>
                 <Button 
-                    className="startButton" 
+                    className="testStartButton" 
                     variant="contained"
                      color="primary"
                      onClick={this.openModal}

@@ -1,7 +1,7 @@
 export const initialState ={
     mistakes:[],
 }
-export function Mistake(state = initialState,action){
+export  function Mistake(state = initialState,action){
     switch (action.type){
         case "ADD_MISTAKE":
             return {

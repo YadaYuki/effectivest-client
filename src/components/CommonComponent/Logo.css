@@ -1,4 +1,4 @@
-.logo {
+.logo a{
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -6,4 +6,5 @@
     line-height: 29px;
     /* Blue 1 */
     color: #2F80ED;
+    text-decoration: none;
 }

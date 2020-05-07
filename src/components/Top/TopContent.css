@@ -1,4 +1,6 @@
-.startButton {
+.letsStartButton {
+    text-align: center;
+    padding-top:20px;
     display: block;
     margin: 30px auto;
     background: #56CCF2;
@@ -9,6 +11,6 @@
     width:200px;
     font-size:18px;
 }
-.startButton:hover{
+.letsStartButton:hover{
     color:black;
 }

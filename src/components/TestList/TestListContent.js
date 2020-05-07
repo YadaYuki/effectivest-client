@@ -6,10 +6,10 @@ export default class TestListContent extends React.Component {
         this.props.getTest();
     }
     render() {
-        const {tests,error} = this.props;
-        if(typeof test !== undefined){
-            alert("test:"+JSON.stringify(tests));
-        }
+        // const {tests} = this.props;
+        // if(typeof test !== undefined){
+        //     // alert("test:"+JSON.stringify(tests));
+        // }
         return(
             <div className="testListContent">
                 <TestListItem test_id={1} testname={"testname"} description={"絶対に作り上げて見せる！！"} />

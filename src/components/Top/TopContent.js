@@ -8,7 +8,7 @@ export default function TopContent(){
         <div>
             <ApplicationDesc />
             <DescItems />
-            <Button className="startButton">
+            <Button className="letsStartButton" href="/test_list">
                 Let's Start!
             </Button>
         </div>

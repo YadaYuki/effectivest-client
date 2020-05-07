@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import * as reducers from "./reducers";
-
-const store = createStore(
-  combineReducers(reducers),
-  applyMiddleware(logger,thunk)
-);
-
+import configureStore, { history } from "./configureStore";
+import { ConnectedRouter } from "connected-react-router";
+const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
