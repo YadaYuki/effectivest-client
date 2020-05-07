@@ -1,19 +1,26 @@
 import React from "react";
 import TestListItem from "./TestListItem";
 import "./TestListContent.css"
+import Loading from "../CommonComponent/Loading";
 export default class TestListContent extends React.Component {
-    componentWillMount(){
+    componentWillMount() {
         this.props.getTest();
-    }
+    };
+    
     render() {
-        // const {tests} = this.props;
-        // if(typeof test !== undefined){
-        //     // alert("test:"+JSON.stringify(tests));
-        // }
-        return(
-            <div className="testListContent">
-                <TestListItem test_id={1} testname={"testname"} description={"絶対に作り上げて見せる！！"} />
-            </div>
-        );
+        const { tests, error } = this.props;
+        if (error) {
+            return <p>Error</p>
+        } else if (typeof tests === "undefined") {
+            return <Loading />
+        } else {
+            return (
+                <div className="testListContent">
+                    {tests.map(test=>(
+                        <TestListItem test_id={test.test_id} testname={test.testname} description={test.description} />
+                    ))}
+                </div>
+            );
+        }
     }
 }

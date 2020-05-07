@@ -1,0 +1,12 @@
+.editItem{
+    width:400px;
+    height:200px;
+    margin:30px auto;
+}
+.editItemContent{
+    height:100%;
+    display: flex;
+}
+.editItemContent h1{
+    width:50%;
+}

@@ -1,7 +1,9 @@
 import React from "react";
 import Top from "./components/Top/Top";
-import { Route, Switch } from 'react-router'
 import TestList from "./components/TestList/TestList";
+import Edit from "./components/Edit/Edit";
+
+import { Route, Switch } from 'react-router';
 import { StylesProvider } from '@material-ui/core/styles';
 export default function App() {
     return (
@@ -9,6 +11,7 @@ export default function App() {
            <Switch>
                <Route exact path="/" component={Top} />
                <Route path="/test_list" component={TestList} />
+               <Route path="/edit" component={Edit} />
            </Switch>
         </StylesProvider>
     );

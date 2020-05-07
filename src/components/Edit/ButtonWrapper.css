@@ -1,0 +1,8 @@
+.buttonWrapper{
+    width:50%;
+    text-align: center;
+}
+.buttonWrapper button,a{
+    width:100%;
+    margin:3px auto;
+}
