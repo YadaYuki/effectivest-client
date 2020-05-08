@@ -6,7 +6,9 @@ export default class DeleteTestButton extends React.Component {
         this.deleteTest = this.deleteTest.bind(this);
     };
     deleteTest() {
-        alert(`DELETE ${this.props.test_id}`);
+        if(window.confirm("delete?")){
+            this.props.deleteTest(this.props.test_id);
+        }
     };
     render() {
         return (

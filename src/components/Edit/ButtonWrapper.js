@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteTestButton from "./DeleteTestButton";
+import DeleteTestButton from "../../containers/Edit/DeleteTestButton";
 import ResultGraphButton from "./ResultGraphButton";
 import GetCSVButton from "./GetCSVButton";
 import EditTestButton from "./EditTestButton";

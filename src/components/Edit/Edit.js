@@ -1,11 +1,13 @@
 import React from "react";
 import Header from "../CommonComponent/Header";
-import EditContent from "./EditContent";
+import EditContent from "../../containers/Edit/EditContent";
+import TabMenu from "../CommonComponent/TabMenu";
 export default function Edit(props){
     return (
-        <div>
+        <>
             <Header />
             <EditContent />
-        </div>
+            <TabMenu value={1}/>
+        </>
     );
 }

@@ -1,0 +1,9 @@
+.buttomMenu{
+    position: fixed;
+    top:auto;
+    bottom:0;
+    font-size: 100px;
+  }
+  .buttomMenu a{
+    font-size: 30px;
+  }
