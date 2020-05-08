@@ -2,7 +2,10 @@ import React from "react";
 import { IconButton } from "@material-ui/core";
 export default function BackButton() {
     const style = {
-        backgroundColor: "#F2F2F2"
+        backgroundColor: "#F2F2F2",
+        position:"fixed",
+        top:"3px",
+        left:"3px"
     }
     return (
         <IconButton onClick={() => { window.history.back() }} className="backButton" style={style}>

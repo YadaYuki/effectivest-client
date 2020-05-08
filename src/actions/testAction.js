@@ -1,5 +1,6 @@
 import axios from "./axios";
 import qs from "qs";
+import {push} from "connected-react-router";
 axios.defaults.baseURL = axios.defaults.baseURL + "/test";
 export function startRequest() {
     return {
@@ -65,6 +66,9 @@ export function fetchAddTest(testname,description){
             const test_id = response.data.test_id;
             if(test_id){//if not undefined 
                 dispatch(addTest(test_id,testname,description));
+                //redirect 
+                const params = qs.stringify({test_id,testname}) 
+                dispatch(push(`/input_question?${params}`));
             }else{
                 dispatch(requestFailed());
             }

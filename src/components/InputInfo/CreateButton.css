@@ -1,0 +1,9 @@
+.createButton {
+    position: fixed;
+    top: 85%;
+    left: 85%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    background-color: #56CCF2;
+}

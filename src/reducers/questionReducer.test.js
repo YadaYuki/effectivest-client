@@ -1,4 +1,4 @@
-import {initialState,Question} from "./questionReducer";
+import Question,{initialState} from "./questionReducer";
 import * as actions from "../actions/questionAction";
 describe("switch case:",()=>{
     const questions = [{question_id:1,question:"question",answer:"answer"},{question_id:2,question:"question",answer:"answer"},{question_id:3,question:"question",answer:"answer"}];

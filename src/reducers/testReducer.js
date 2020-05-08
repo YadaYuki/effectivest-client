@@ -1,5 +1,5 @@
 export const initialState = {
-    test:undefined,
+    test:[],
     error:false
 };
 export default function Test(state = initialState,action){

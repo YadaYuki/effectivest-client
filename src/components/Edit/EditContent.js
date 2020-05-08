@@ -20,6 +20,6 @@ export default class EditContent extends React.Component {
                     ))}
                 </div>
             );
-        }
+        };
     }
 }
