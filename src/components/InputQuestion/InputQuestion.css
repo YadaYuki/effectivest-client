@@ -1,6 +1,17 @@
-.inputQuestionWrapper,.inputQuestionWrapper h1{
+.inputQuestionWrapper{
     background-color: #F2F2F2;
     width:100%;
     height:100%;
     margin:0;
+    text-align: center;
+    
+    /* margin-top:200px; */
+}
+.inputQuestionContent{
+    margin: 0 auto ;
+    position: relative;
+    top:100px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

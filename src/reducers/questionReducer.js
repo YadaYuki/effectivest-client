@@ -1,4 +1,4 @@
-export const initialState = { test: undefined, questions: undefined, error: false, }
+export const initialState = { test_id: undefined, questions: [], error: false, }
 export default function Question(state = initialState, action) {
     switch (action.type) {
         case "RECIEVE_QUESTION":
@@ -7,7 +7,7 @@ export default function Question(state = initialState, action) {
             };
         case "START_REQUEST":
             return {
-                ...state, test: action.payload.test, error: false
+                ...state, test_id: action.payload.test_id, error: false
             }
         case "REQUEST_FAILED":
             return {

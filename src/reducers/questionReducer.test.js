@@ -6,8 +6,8 @@ describe("switch case:",()=>{
         expect(Question(initialState,actions.recieveQuestion(questions))).toEqual({...initialState,questions});
     });
     it("START_REQUEST",()=>{
-        const test = {test_id:1,test:"sample",description:"111"};
-        expect(Question(initialState,actions.startRequest(test))).toEqual({...initialState,test,error:false});
+        // const test = {test_id:1,test:"sample",description:"111"};
+        expect(Question(initialState,actions.startRequest(test_id))).toEqual({...initialState,test_id,error:false});
     });
     it("REQUEST_FAILED",()=>{
         expect(Question(initialState,actions.requestFailed())).toEqual({...initialState,error:true});

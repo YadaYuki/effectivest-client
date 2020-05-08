@@ -5,8 +5,8 @@ const middleWares = [thunk];
 const mockStore = configureMockStore(middleWares);
 describe("questionAction Test(sync)",()=>{
     it("startRequest",()=>{
-        const test = {test_id:1,testname:"sample",description:"sample,sample"};
-        expect(actions.startRequest(test)).toEqual({type:"START_REQUEST",payload:{test}});
+        // const test = {test_id:1,testname:"sample",description:"sample,sample"};
+        expect(actions.startRequest(test_id)).toEqual({type:"START_REQUEST",payload:{test_id}});
     });
     it("recieveQuestion",()=>{
         const question = [{question_id:1,question:"sample",answer:"sampleans"},{question_id:1,question:"sample",answer:"sampleans"},{question_id:1,question:"sample",answer:"sampleans"}];

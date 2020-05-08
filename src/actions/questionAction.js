@@ -1,10 +1,10 @@
 import axios from "./axios";
 import qs from "qs";
 axios.defaults.baseURL = axios.defaults.baseURL + "/question";
-export function startRequest(test){
+export function startRequest(test_id){
     return {
         type:"START_REQUEST",
-        payload:{test},
+        payload:{test_id},
     };
 }
 export function recieveQuestion(questions){
@@ -41,9 +41,9 @@ export function deleteQuestion(question_id){
 export function fetchAddQuestion(test_id,question,answer){
     return async(dispatch,getState)=>{
         //find test by id
-        const test_arr = getState().Test.test;
-        const test = test_arr.find((test)=>{return test.test_id === test_id});
-        dispatch(startRequest(test));
+        // const test_arr = getState().Test.test;
+        // const test = test_arr.find((test)=>{return test.test_id === test_id});
+        dispatch(startRequest(test_id));
         try{
             const user_token = getState().User.user_token;
             const response = await axios.post("/add",{test_id,question,answer,user_token});
@@ -104,9 +104,9 @@ export function fetchUpdateCorrectRate(question_id_arr){
 }
 export function fetchGetAllQuestion(test_id){
     return async(dispatch,getState)=>{
-        const test_arr = getState().Test.test;
-        const test = test_arr.find((test)=>{return test.test_id === test_id});
-        dispatch(startRequest(test));
+        // const test_arr = getState().Test.test;
+        // const test = test_arr.find((test)=>{return test.test_id === test_id});
+        dispatch(startRequest(test_id));
         try{
             const params = qs.stringify({test_id,is_test:false});
             const response = await axios.get(`/get/all?${params}`);
