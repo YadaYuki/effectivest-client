@@ -18,14 +18,14 @@ export default class QuestionInput extends React.Component {
         const { question, answer } = this.state;
         const questionLengthIsCorrect = (question.length > 0) && (answer.length > 0);
         if (questionLengthIsCorrect) {
-            alert("追加");
+            this.props.addQuestion(question,answer);
+            this.setState({ question: "", answer: ""});
         } else {
             alert("問題と答えを入力してください");
         }
     }
     render() {
         return (
-
             <div className="questionInput">
                 <Paper elevation={0} style={{padding:"15px"}}>
                     <Input

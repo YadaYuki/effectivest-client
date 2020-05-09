@@ -2,7 +2,7 @@ import baseURL from "./baseURL";
 import qs from "qs";
 import axios from "axios";
 import {push} from "connected-react-router";
-axios.defaults.baseURL = baseURL  + "/test";
+const URL = baseURL  + "/test";
 export function startRequest() {
     return {
         type: "START_REQUEST",
@@ -46,7 +46,7 @@ export function fetchGetTest() {
         try {
             const user_token = getState().User.user_token;
             const params = qs.stringify({ user_token });
-            const response = await axios.get(`/get/all?${params}`);
+            const response = await axios.get(`${URL}/get/all?${params}`);
             const data = response.data;
             if (data.length) {
                 dispatch(recieveTest(data));
@@ -63,7 +63,7 @@ export function fetchAddTest(testname,description){
         dispatch(startRequest());
         try{
             const user_token = getState().User.user_token;
-            const response = await axios.post("/add",{testname,description,user_token});
+            const response = await axios.post(`${URL}/add`,{testname,description,user_token});
             const test_id = response.data.test_id;
             if(test_id){//if not undefined 
                 dispatch(addTest(test_id,testname,description));
@@ -84,7 +84,7 @@ export function fetchUpdateTest(test_id,testname,description){
         dispatch(startRequest());
         try{
             const user_token = getState().User.user_token;
-            const response = await axios.put("/update",{user_token,test_id,testname,description});
+            const response = await axios.put(`${URL}/update`,{user_token,test_id,testname,description});
             if(response.data.is_updated === true){
                 dispatch(updateTest({test_id,testname,description}));
             }else{
@@ -100,7 +100,7 @@ export function fetchDeleteTest(test_id){
         dispatch(startRequest());
         try{
             const user_token = getState().User.user_token;
-            const response = await axios.delete("/delete",{data:{user_token,test_id}});
+            const response = await axios.delete(`${URL}/delete`,{data:{user_token,test_id}});
             if(response.data.is_deleted){
                 dispatch(deleteTest(test_id));
             }else{

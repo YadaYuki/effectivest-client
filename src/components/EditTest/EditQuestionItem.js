@@ -16,11 +16,24 @@ export default class EditQuestionItem extends React.Component {
     deleteQuestion() {
         const { question_id } = this.props;
         if (window.confirm("削除しますか?")) {
-            alert(`Delete ${question_id}`);
+            this.props.deleteQuestion(question_id);
+            window.location.reload();
         }
     }
     editQuestion() {
-        this.setState({ ...this.state, is_edit: !this.state.is_edit });
+        if (this.state.is_edit === true) {// 編集後に更新を行う
+            const { question, answer } = this.state;
+            const { question_id } = this.props;
+            const questionAndAnswerIsCorrect = (question.length > 0) && (answer.length > 0);
+            if (questionAndAnswerIsCorrect === true) {
+                this.props.updateQuestion(question_id, question, answer);
+                this.setState({ ...this.state, is_edit: false });
+            } else {
+                alert("問題と解答を入力してください");
+            }
+        } else {
+            this.setState({ ...this.state, is_edit: true });
+        }
     }
     handleChange(e) {
         this.setState({ ...this.state, [e.target.name]: e.target.value })

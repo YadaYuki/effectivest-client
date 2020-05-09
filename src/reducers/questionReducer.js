@@ -23,7 +23,8 @@ export default function Question(state = initialState, action) {
             }
         case "DELETE_QUESTION":
             return {
-                ...state, questions: state.questions.filter((question) => { return question.question_id !== action.payload.question_id })
+                ...state,
+                 questions: state.questions.filter((question) => { return question.question_id !== action.payload.question_id })
             }
         default:
             return state;
