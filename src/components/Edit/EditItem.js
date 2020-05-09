@@ -8,7 +8,7 @@ export default function EditItem(props) {
         <Card className="editItem" variant="outlined">
             <CardContent className="editItemContent">
                 <h1>{testname}</h1>
-                <ButtonWrapper test_id={test_id}/>
+                <ButtonWrapper testname={testname} test_id={test_id}/>
             </CardContent>
         </Card>
     );

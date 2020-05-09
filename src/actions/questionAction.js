@@ -1,6 +1,7 @@
-import axios from "./axios";
+import baseURL from "./baseURL";
 import qs from "qs";
-axios.defaults.baseURL = axios.defaults.baseURL + "/question";
+import axios from "axios";
+axios.defaults.baseURL = baseURL + "/question";
 export function startRequest(test_id){
     return {
         type:"START_REQUEST",
@@ -110,7 +111,8 @@ export function fetchGetAllQuestion(test_id){
         try{
             const params = qs.stringify({test_id,is_test:false});
             const response = await axios.get(`/get/all?${params}`);
-            dispatch(recieveQuestion(response.data.question));
+            
+            dispatch(recieveQuestion(response.data));
             // const response 
         }catch(err){
             console.log(err);

@@ -1,7 +1,8 @@
-import axios from "./axios";
+import baseURL from "./baseURL";
 import qs from "qs";
+import axios from "axios";
 import {push} from "connected-react-router";
-axios.defaults.baseURL = axios.defaults.baseURL + "/test";
+axios.defaults.baseURL = baseURL  + "/test";
 export function startRequest() {
     return {
         type: "START_REQUEST",
@@ -68,7 +69,7 @@ export function fetchAddTest(testname,description){
                 dispatch(addTest(test_id,testname,description));
                 //redirect 
                 const params = qs.stringify({test_id,testname}) 
-                dispatch(push(`/input_question?${params}`));
+                dispatch(push(`/edit_test?${params}`));
             }else{
                 dispatch(requestFailed());
             }

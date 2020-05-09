@@ -1,6 +1,7 @@
-import axios from "./axios";
+import baseURL from "./baseURL";
 import qs from "qs";
-axios.defaults.baseURL = axios.defaults.baseURL + "/result";
+import axios from "axios";
+axios.defaults.baseURL = baseURL  + "/result";
 export function startRequest(test){
     return {
         type:"START_REQUEST",

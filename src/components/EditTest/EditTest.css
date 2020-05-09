@@ -1,0 +1,45 @@
+.editTestWrapper {
+    position: relative;
+    height: auto;
+    min-height: 100%;
+    background-color: #F2F2F2;
+}
+
+.editTestContent {
+    margin: 0 auto;
+    position: relative;
+    top: 100px;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.questionInput{
+    width:400px;
+    padding:15px 15px;
+    /* margin: auto; */
+    text-align: center;
+}
+
+
+.editQuestionItem {
+    width: 400px;
+    padding: 15px 15px;
+    position: relative;
+}
+
+.questionAnsWrapper {
+    width: 90%;
+    float: left;
+}
+
+.editQuestionItemWrapper {
+    display: flex;
+    align-items: center;
+}
+.deleteQuestionButton,.deleteQuestionButton:hover{
+    position: absolute;
+    left:92%;
+    top:-10px;
+    background-color: red;
+}

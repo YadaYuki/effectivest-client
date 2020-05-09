@@ -1,6 +1,7 @@
-import axios from "./axios";
+import baseURL from "./baseURL";
 import qs from "qs";
-axios.defaults.baseURL = axios.defaults.baseURL + "/mistake";
+import axios from "axios";
+axios.defaults.baseURL = baseURL  + "/mistake";
 export function addMistake(mistake) {
     return {
         type: "ADD_MISTAKE",

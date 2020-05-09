@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import {baseURL} from "../../actions/axios";
+import baseURL from "../../actions/baseURL";
 export default class GetCSVButton extends React.Component{
     render(){
         const {test_id} = this.props;
