@@ -1,53 +1,48 @@
 import React from "react";
 import { Button, Modal } from "@material-ui/core"
 import "./StartButton.css";
-export default class StartButton extends React.Component{
+import ModalContent from "./ModalContent";
+export default class StartButton extends React.Component {
     // const {test_id} = props;
     // onClick→テスト情報入力モーダルが開く
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            open:false
+            open: false
         };
         this.openModal = this.openModal.bind(this);
-        this.closeModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
-    openModal (){
+    openModal() {
         this.setState({
-            open:true
+            open: true
         });
     };
-    closeModal(){
+    closeModal() {
         this.setState({
-            open:false
+            open: false
         });
     };
     render() {
         const open = this.state.open;
+        const { test_id, testname } = this.props;
         return (
             <>
-                <Button 
-                    className="testStartButton" 
+                <Button
+                    className="testStartButton"
                     variant="contained"
-                     color="primary"
-                     onClick={this.openModal}
-                     >
+                    color="primary"
+                    onClick={this.openModal}
+                >
                     Start
         </Button>
                 <Modal
                     open={open}
                     onClose={this.closeModal}
                 >
-                    <ModalContent />
+                    <ModalContent {...{ testname, test_id }} />
                 </Modal>
             </>
         );
     }
-}
-function ModalContent(){
-    return (
-        <div>
-            <h1>Modal!</h1>
-        </div>
-    );
 }

@@ -1,0 +1,19 @@
+.modalInputWrapper{
+    padding: 15px;
+    text-align: center;
+}
+.modalContent{
+    background-color: white;
+    width:300px;
+    height:500px;
+    margin:50px auto;
+}
+.modalContent h1{
+    text-align: center;
+    font-family: Roboto;
+}
+.startTestButton {
+    width:80%;
+    text-align: center;
+    margin:10px auto;
+}

@@ -10,7 +10,7 @@ export default function TestListItem(props) {
                 <h2>{testname}</h2>
                 <p>{description}</p>
                 <CardActions>
-                    <StartButton test_id={test_id} />
+                    <StartButton testname={testname} test_id={test_id} />
                 </CardActions>
             </CardContent>
         </Card>
