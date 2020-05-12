@@ -1,0 +1,15 @@
+.time{
+    position: fixed;
+    right:5%;
+}
+.testTestnameWrapper{
+    position: fixed;
+    left:5%;
+}
+.testContentWrapper{
+    margin-top: 100px;
+}
+.testItem{
+    width: 60%;
+    margin:10px auto;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import { Paper, TextField, MenuItem,Button } from "@material-ui/core";
 import "./ModalContent.css"
-import {makeStyles} from "@material-ui/core/styles"
 const modeOptions = [
     { value: "all", label: "すべて" }, { value: "week", label: "苦手" }, { value: "random", label: "ランダム" }
 ];
@@ -21,7 +20,7 @@ export default class ModalContent extends React.Component {
         this.setState({ ...this.state, [e.target.name]: e.target.value });
     }
     render() {
-        const { test_id, testname } = this.props;
+        const { testname } = this.props;//test_id
         const { mode, minutes, seconds, question_num } = this.state;
         return (
             <Paper className="modalContent">
