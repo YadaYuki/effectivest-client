@@ -1,5 +1,4 @@
 import baseURL from "./baseURL";
-import qs from "qs";
 import axios from "axios";
 axios.defaults.baseURL = baseURL  + "/mistake";
 export function addMistake(mistake) {

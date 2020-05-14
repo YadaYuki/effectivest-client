@@ -15,7 +15,6 @@ describe("mistakeAction Test(async)",()=>{
         const mistakes = [{result_id:1,question_id:1},{result_id:1,question_id:1}];
         const store = mockStore({User:{user_token},Mistake:{mistakes}});
         return store.dispatch(actions.fetchAddMistake()).then(()=>{
-
         });
     });
 });
