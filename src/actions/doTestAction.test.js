@@ -7,7 +7,7 @@ const mockStore = configureMockStore(middlewares);
 describe("doTestAction Test(sync)",()=>{
     test("setTest",()=>{
         const test = {test_id:1,mode:"all",question_num:10};
-        expect(actions.setTest(test)).toEqual({type:"SET_TEST",payload:{test_id}});
+        expect(actions.setTest(test)).toEqual({type:"SET_TEST",payload:{test}});
     });
     test("setTime",()=>{
         const time = 300;
@@ -26,7 +26,8 @@ describe("doTestAction Test(sync)",()=>{
         const point = 10;
         const max_point = 10;
         const correct_rate = point/max_point;
-        expect(actions.setResult(point,max_point,correct_rate)).toEqual({type:"SET_RESULT",payload:{point,max_point,correct_rate}});
+        const result = {point,max_point,correct_rate};
+        expect(actions.setResult(point,max_point,correct_rate)).toEqual({type:"SET_RESULT",payload:{result}});
     });
     test("setResultId",()=>{
         const result_id = 2;
@@ -42,6 +43,10 @@ describe("doTestAction Test(sync)",()=>{
     test("setQuestions",()=>{
         const questions = [{question_id:1,question:"aaa",answer:"aaa",user_ans:"aaa"},{question_id:1,question:"aaa",answer:"aaa",user_ans:"aaa"},{question_id:1,question:"aaa",answer:"aaa",user_ans:"aaa"}];
         expect(actions.setQuestions(questions)).toEqual({type:"SET_QUESTIONS",payload:{questions}});
+    });
+    test("setCorrects",()=>{
+        const corrects = [1,2,3,4];
+        expect(actions.setCorrects(corrects)).toEqual({type:"SET_CORRECTS",payload:{corrects}});
     });
 });
 // describe("doTestAction Test(async)",()=>{

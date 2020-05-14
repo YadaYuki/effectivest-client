@@ -2,134 +2,166 @@ import baseURL from "./baseURL";
 import axios from "axios";
 import { connect } from "react-redux";
 
-export function setTest(test){
+export function setTest(test) {
     return {
-        type:"SET_TEST",
-        payload:{test},
+        type: "SET_TEST",
+        payload: { test },
     };
 };
-export function setTime(time){
+export function setTime(time) {
     return {
-        type:"SET_TIME",
-        payload:{time},
+        type: "SET_TIME",
+        payload: { time },
     };
 };
-export function setTestIsDoing(test_is_doing){
+export function setTestIsDoing(test_is_doing) {
     return {
-        type:"SET_TEST_IS_DOING",
-        payload:{test_is_doing},
+        type: "SET_TEST_IS_DOING",
+        payload: { test_is_doing },
     };
 };
-export function setUserAns(question_id,user_ans){
+export function setUserAns(question_id, user_ans) {
     return {
-        type:"SET_USER_ANS",
-        payload:{question_id,user_ans},
+        type: "SET_USER_ANS",
+        payload: { question_id, user_ans },
     };
 };
-export function setResult(point,max_point,correct_rate){
-    const result = {point,max_point,correct_rate};
+export function setResult(point, max_point, correct_rate) {
+    const result = { point, max_point, correct_rate };
     return {
-        type:"SET_RESULT",
-        payload:{result}
+        type: "SET_RESULT",
+        payload: { result }
     };
 }
-export function requestFailed(){
+export function requestFailed() {
     return {
-        type:"REQUEST_FAILED"
+        type: "REQUEST_FAILED"
     };
 }
-export function setMistakes(mistakes){
-    return { 
-        type:"SET_MISTAKES",
-        payload:{mistakes}
-    };
-};
-export function setResultId(result_id){
+export function setMistakes(mistakes) {
     return {
-        type:"SET_RESULT_ID",
-        payload:{result_id}
+        type: "SET_MISTAKES",
+        payload: { mistakes }
     };
 };
-export function setQuestions(questions){
+export function setCorrects(corrects) {
     return {
-        type:"SET_QUESTIONS",
-        payload:{questions},
+        type: "SET_CORRECTS",
+        payload: { corrects }
     };
 };
-export function fetchUpdateCorrectTime(question_id_arr){
-    return async(dispatch,getState)=>{
-        try{
-            const user_token = getState().User.user_token;
-            const response = await axios.put(`${URL}/update/correct_time`,{user_token,question_id:question_id_arr});
-            if(response.data.is_updated === true){
+export function setResultId(result_id) {
+    return {
+        type: "SET_RESULT_ID",
+        payload: { result_id }
+    };
+};
+export function setQuestions(questions) {
+    return {
+        type: "SET_QUESTIONS",
+        payload: { questions },
+    };
+};
 
-            }else{
+export function fetchUpdateCorrectTime() {
+    return async (dispatch, getState) => {
+        try {
+            const user_token = getState().User.user_token;
+            const corrects = getState().DoTest.corrects;
+            const response = await axios.put(`${URL}/update/correct_time`, { user_token, question_id: corrects });
+            if (response.data.is_updated === true) {
+
+            } else {
                 dispatch(requestFailed());
-            }
-        }catch(err){
+            };
+        } catch (err) {
             dispatch(requestFailed());
-        }
-    }
-}
-export function fetchGetQuestions(){
-    return async(dispatch,getState)=>{
-        try{
-            const {test_id,mode,question_num} = getState().DoTest.test;
-            const params = qs.stringify({test_id,is_test:true,question_num});
+        };
+    };
+};
+
+export function fetchGetQuestions() {
+    return async (dispatch, getState) => {
+        try {
+            const { test_id, mode, question_num } = getState().DoTest.test;
+            const params = qs.stringify({ test_id, is_test: true, question_num });
             const response = await axios.get(`${URL}/questions/get/${mode}/?${params}`);
             const questions = response.data;
-            for (question of questions){
+            for (question of questions) {
                 question["user_ans"] = "";
             }
             dispatch(setQuestions(questions));
-        }catch(err){
+        } catch (err) {
             console.log(err);
             dispatch(requestFailed());
-        }
-    }
-}
-export function fetchAddResult(){
-    return async(dispatch,getState) => {
-        try{
-            const {test_id} = getState().DoTest.test;
+        };
+    };
+};
+
+export function fetchAddResult() {
+    return async (dispatch, getState) => {
+        try {
+            const { test_id } = getState().DoTest.test;
             const user_token = getState().User.user_token;
-            const {point,max_point,correct_rate} = getState().DoTest.result;
-            const response = await axios.post(`${URL}/result/add`,data={test_id,user_token,point,max_point,correct_rate});
-            const {result_id,is_resulted} = response.data;
-            if(is_resulted === true){
+            const { point, max_point, correct_rate } = getState().DoTest.result;
+            const response = await axios.post(`${URL}/result/add`, data = { test_id, user_token, point, max_point, correct_rate });
+            const { result_id, is_resulted } = response.data;
+            if (is_resulted === true) {
                 dispatch(setResultId(result_id));
-            }else{
+            } else {
                 dispatch(requestFailed());
             };
-        }catch(err){
+        } catch (err) {
+            console.log(err);
+            dispatch(requestFailed());
+        };
+    };
+};
+export function fetchAddMistake() {
+    return async (dispatch, getState) => {
+        const mistakes = getState().DoTest.mistakes;
+        const result_id = getState().DoTest.result_id;
+        const user_token = getState().User.user_token;
+        //add result id;
+        for (mistake of mistakes) {
+            mistake["result_id"] = result_id;
+        }
+        try {
+            const response = await axios.post(`${URL}/mistake/add`, data = { user_token, mistake: mistakes });
+        } catch (err) {
             console.log(err);
             dispatch(requestFailed());
         }
     }
 }
-export function scoring(){
-    return async(dispatch,getState)=>{
+
+export function scoring() {
+    return async (dispatch, getState) => {
         const questions = getState.DoTest.questions;
-        const scoreAndMistakes = getPoint(questions);
+        const scoreAndMistakesAndCorrects = getPoint(questions);
+        const { point, mistakes, corrects } = scoreAndMistakesAndCorrects;
+        // correct
+        dispatch(setCorrects(corrects));
         //mistakes
-        const {point,mistakes} = scoreAndMistakes;
         dispatch(setMistakes(mistakes));
         // results
         const max_point = getState.DoTest.questions.length;
-        const correct_rate = point/max_point;
-        dispatch(setResult(point,max_point,correct_rate));
+        const correct_rate = point / max_point;
+        dispatch(setResult(point, max_point, correct_rate));
     }
 }
 
 const getPoint = (questions) => {
     var mistakes = [];
+    var corrects = [];
     let point = 0;
     for (let question of questions) {
         if (question.answer != question.user_ans) {
-            mistakes.push({question_id:question.question_id,question:question.question,answer:question.answer});
+            mistakes.push({ question_id: question.question_id, question: question.question, answer: question.answer });
         } else {
+            corrects.push(question.question_id);
             point++;
         }
     }
-    return { point: point, mistakes: mistakes };
+    return { point, mistakes, corrects };
 };
