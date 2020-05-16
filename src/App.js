@@ -6,6 +6,7 @@ import Edit from "./components/Edit";
 import EditTest from "./components/EditTest";
 import InputInfo from "./components/InputInfo";
 import Test from "./components/Test";
+import ResultGraph from "./components/ResultGraph";
 
 import { Route, Switch } from 'react-router';
 import { StylesProvider } from '@material-ui/core/styles';
@@ -20,6 +21,7 @@ export default function App() {
                <Route path="/input_info" component={InputInfo} />
                <Route path="/edit_test" component={EditTest} />
                <Route path="/test" component={Test} />
+               <Route path="/result_graph" component={ResultGraph} />
            </Switch>
         </StylesProvider>
     );

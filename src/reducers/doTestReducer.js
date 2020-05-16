@@ -1,6 +1,3 @@
-import { routerActions } from "connected-react-router";
-import { act } from "react-dom/test-utils";
-
 export const initialState = {
     test_is_doing: false,
     test: undefined,

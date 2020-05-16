@@ -9,7 +9,7 @@ export default function ButtonWrapper(props) {
     return (
         <div className="buttonWrapper">
             <EditTestButton testname={testname} test_id={test_id} />
-            <ResultGraphButton test_id={test_id} />
+            <ResultGraphButton testname={testname} test_id={test_id} />
             <GetCSVButton test_id={test_id} />
             <DeleteTestButton test_id={test_id} />
         </div>
