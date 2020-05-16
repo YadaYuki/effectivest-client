@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, TextField, MenuItem,Button } from "@material-ui/core";
 import "./ModalContent.css"
+import qs from "querystring";
 const modeOptions = [
     { value: "all", label: "すべて" }, { value: "week", label: "苦手" }, { value: "random", label: "ランダム" }
 ];
@@ -15,13 +16,21 @@ export default class ModalContent extends React.Component {
             question_num: 5,
         }
         this.handleChange = this.handleChange.bind(this);
+        this.getParams = this.getParams.bind(this);
     }
     handleChange(e) {
         this.setState({ ...this.state, [e.target.name]: e.target.value });
     }
+    getParams(){
+        const {test_id} = this.props;
+        const { mode, minutes, seconds, question_num } = this.state;
+        const time = minutes * 60 + seconds;
+        return qs.stringify({test_id,time,question_num,mode});
+    }
     render() {
         const { testname } = this.props;//test_id
         const { mode, minutes, seconds, question_num } = this.state;
+
         return (
             <Paper className="modalContent">
                 <h1>{testname}</h1>
@@ -74,7 +83,7 @@ export default class ModalContent extends React.Component {
                         fullWidth
                     />
                     <br /><br />
-                <Button fullWidth variant="contained" className="startTestButton">START<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h-6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></Button>
+                <Button fullWidth href={`/test?${this.getParams()}`} variant="contained" className="startTestButton">START<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h-6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></Button>
                 </div>
             </Paper>
         );
