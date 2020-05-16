@@ -1,0 +1,56 @@
+.resultModeWrapper{
+    position: fixed;
+    top: 5px;
+    right:5px;
+}
+.resultTestnameWrapper{
+    position: fixed;
+    top: 5px;
+    left:5px;
+}
+.resultWrapper{
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height:230px;
+    z-index:100;
+    top:0;
+}
+.mistakeTitle{
+    top:230px;
+    height:70px;
+    background-color: white;
+}
+.mistakeContent{
+    margin-top: 310px;
+}
+.mistakeItem{
+    width: 400px;
+    margin: 10px auto;
+    padding:15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.chartWrapper{
+    position: relative;
+}
+@keyframes fadeIn {
+    from {
+        top:50px;
+        color: white;
+    }
+    to {
+        top:72px;
+        color: black;
+    }
+}
+.chartWrapper h3{
+    position: absolute;
+    top:72px;
+    text-align: center;
+    width: 100%;
+    color:black;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}

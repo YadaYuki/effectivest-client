@@ -10,4 +10,4 @@ export default function CorrectRateItem({ question, answer, correct_rate }) {
             <p>{`正答率:${(correct_rate*100).toFixed(1)}%`}</p>
         </Paper>
     )
-}
+};
