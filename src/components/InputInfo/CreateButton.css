@@ -1,7 +1,7 @@
 .createButton {
     position: fixed;
-    top: 85%;
-    left: 85%;
+    bottom: 25%;
+    right: 5%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;

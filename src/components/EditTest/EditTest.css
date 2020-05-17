@@ -39,7 +39,7 @@
 }
 .deleteQuestionButton,.deleteQuestionButton:hover{
     position: absolute;
-    left:92%;
+    right:0%;
     top:-10px;
     background-color: red;
 }

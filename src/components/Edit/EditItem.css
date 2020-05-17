@@ -1,5 +1,5 @@
 .editItem {
-    width: 400px;
+    width: 350px;
     height: 200px;
     margin: 30px auto;
 }
@@ -10,7 +10,7 @@
 }
 
 .editItemContent h1 {
-    width: 50%;
+    width: 45%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;

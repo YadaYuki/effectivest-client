@@ -1,9 +1,5 @@
 .inputInfoContent {
-    width: 400px;
+    width: 350px;
+    
     margin: 150px auto;
-}
-
-.testname, .description {
-    width: 80%;
-    margin:15px auto;
 }
