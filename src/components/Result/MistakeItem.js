@@ -42,6 +42,7 @@ export default class MistakeItem extends React.Component {
                         size="normal"
                         placeholder={answer}
                         fullWidth
+                        autoComplete="off"
                     />
                 </div>
                 {this.getCheckBox()}

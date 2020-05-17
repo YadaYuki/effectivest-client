@@ -1,6 +1,6 @@
 import React from "react";
 import MistakeTitle from "./MistakeTitle";
-import MistakeContent from "./MistakeContent";
+import MistakeContent from "../../containers/Result/MistakeContent";
 export default function Mistakes(props) {
     return (
         <>

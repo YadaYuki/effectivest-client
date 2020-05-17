@@ -1,6 +1,6 @@
 import React from "react";
 import "./Result.css"
-import Chart from "./Chart";
+import Chart from "../../containers/Result/Chart";
 import Mistakes from "./Mistakes"
 import ResultHeader from "../../containers/Result/ResultHeader";
 import HomeButton from "../CommonComponent/HomeButton";

@@ -1,16 +1,20 @@
-import {connect } from "react-redux";
+import { connect } from "react-redux";
 import * as actions from "../../actions/doTestAction";
 import Test from "../../components/Test";
-const mapStateToProps = (state,ownProps) => ({
-    ...ownProps,test_is_finished:state.DoTest.test_is_finished,
+const mapStateToProps = (state, ownProps) => ({
+    ...ownProps, test_is_finished: state.DoTest.test_is_finished,
 });
 const mapDispatchToProps = (dispatch) => ({
-    setTest(test){
+    setTest(test) {
         dispatch(actions.setTest(test));
-    },setTime(time){
+    }, setTime(time) {
         dispatch(actions.setTime(time));
-    },scoring(){
+    }, scoring() {
         dispatch(actions.scoring());
-    }
-})
-export default connect(mapStateToProps,mapDispatchToProps)(Test);
+    }, fetchAddResult() {
+        dispatch(actions.fetchAddResult());
+    }, fetchUpdateCorrectTime() {
+        dispatch(actions.fetchUpdateCorrectTime());
+    }, 
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Test);

@@ -19,15 +19,12 @@ const options = {
 
     }
 };
-export default class Chart extends React.Component {
-    render() {
-        const point = 10, max_point = 20;
-        const correct_rate = point / max_point;
-        return (
-            <div className="chartWrapper" style={{ width: "400px", margin: "10px auto" }}>
-                <Doughnut data={dataPie(Math.round(correct_rate * 100))} options={options} />
-                <h3>{point}pt</h3>
-            </div>
-        );
-    }
+export default function Chart({ result}) {
+    const {point, correct_rate } = result;
+    return (
+        <div className="chartWrapper" style={{ width: "400px", margin: "10px auto" }}>
+            <Doughnut data={dataPie(Math.round(correct_rate * 100))} options={options} />
+            <h3>{point}pt</h3>
+        </div>
+    );
 }

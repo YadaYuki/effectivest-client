@@ -10,7 +10,7 @@ export default class TestItem extends React.Component {
     }
     handleChange(e){
         this.setState({user_ans:e.target.value});
-        this.props.setUserAns(this.props.question_id,this.state.user_ans)
+        this.props.setUserAns(this.props.question_id,e.target.value);
     }
     render() {
         const question = this.props.question;
@@ -25,6 +25,7 @@ export default class TestItem extends React.Component {
                         onChange={this.handleChange}
                         startAdornment={"A."}
                         fullWidth
+                        autoComplete="off"
                     />
                 </CardContent>
             </Card>

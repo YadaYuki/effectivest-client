@@ -114,7 +114,7 @@ export function fetchAddResult() {
             const user_token = getState().User.user_token;
             const { point, max_point, correct_rate } = getState().DoTest.result;
             const URL = baseURL + "/result";
-            const response = await axios.post(`${URL}/result/add`, { test_id, user_token, point, max_point, correct_rate });
+            const response = await axios.post(`${URL}/add`, { test_id, user_token, point, max_point, correct_rate });
             const { result_id, is_resulted } = response.data;
             if (is_resulted === true) {
                 dispatch(setResultId(result_id));
@@ -138,9 +138,9 @@ export function fetchAddMistake() {
             mistake["result_id"] = result_id;
         }
         try {
-            const response = await axios.post(`${URL}/mistake/add`, { user_token, mistake: mistakes });
+            const response = await axios.post(`${URL}/add`, { user_token, mistake: mistakes });
             if(response.data.is_mistaked === true){
-
+                
             }else{
                 dispatch(requestFailed());
             }

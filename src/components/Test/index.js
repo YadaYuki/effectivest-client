@@ -20,9 +20,11 @@ export default class Test extends React.Component {
             );
         } else {
             this.props.scoring();
+            this.props.fetchAddResult();
+            this.props.fetchUpdateCorrectTime();
             return (
                 <Result />
-            )
+            );
         }
     }
 }
