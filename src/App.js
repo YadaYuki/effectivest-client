@@ -5,7 +5,7 @@ import TestList from "./components/TestList";
 import Edit from "./components/Edit";
 import EditTest from "./components/EditTest";
 import InputInfo from "./components/InputInfo";
-import Test from "./components/Test";
+import Test from "./containers/Test";
 import ResultGraph from "./components/ResultGraph";
 import Result from "./components/Result";
 

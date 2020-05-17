@@ -13,9 +13,13 @@ describe("doTestAction Test(sync)",()=>{
         const time = 300;
         expect(actions.setTime(time)).toEqual({type:"SET_TIME",payload:{time}})
     });
-    test("setTestIsDoing",()=>{
-        const test_is_doing = true;
-        expect(actions.setTestIsDoing(test_is_doing)).toEqual({type:"SET_TEST_IS_DOING",payload:{test_is_doing}});
+    test("setTestIsStart",()=>{
+        const test_is_start = true;
+        expect(actions.setTestIsStart(test_is_start)).toEqual({type:"SET_TEST_IS_START",payload:{test_is_start}});
+    });
+    test("setTestIsFinished",()=>{
+        const test_is_finished = true;
+        expect(actions.setTestIsFinished(test_is_finished)).toEqual({type:"SET_TEST_IS_FINISHED",payload:{test_is_finished}});
     });
     test("setUserAns",()=>{
         const user_ans = "user_ans";

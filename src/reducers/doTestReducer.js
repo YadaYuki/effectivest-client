@@ -1,5 +1,6 @@
 export const initialState = {
-    test_is_doing: false,
+    test_is_start: false,
+    test_is_finished:false,
     test: undefined,
     questions: [],
     mistakes: [],
@@ -15,8 +16,10 @@ export default function DoTest(state = initialState, action) {
             return { ...state, test: action.payload.test };
         case "SET_TIME":
             return {...state,time:action.payload.time};
-        case "SET_TEST_IS_DOING":
-            return {...state,test_is_doing:action.payload.test_is_doing};
+        case "SET_TEST_IS_START":
+            return {...state,test_is_start:action.payload.test_is_start};
+        case "SET_TEST_IS_FINISHED":
+            return {...state,test_is_finished:action.payload.test_is_finished};
         case "SET_USER_ANS":
             return {...state,questions:updateUserAns(state.questions,action.payload.user_ans,action.payload.question_id)}
         case "SET_RESULT":

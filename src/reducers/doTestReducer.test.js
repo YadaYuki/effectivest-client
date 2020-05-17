@@ -9,9 +9,13 @@ describe("switch case", () => {
         const time = 100;
         expect(DoTest(initialState, actions.setTime(time))).toEqual({ ...initialState, time })
     });
-    it("SET_TEST_IS_DOING", () => {
-        const test_is_doing = true;
-        expect(DoTest(initialState, actions.setTestIsDoing(test_is_doing))).toEqual({ ...initialState, test_is_doing });
+    it("SET_TEST_IS_START", () => {
+        const test_is_start = true;
+        expect(DoTest(initialState, actions.setTestIsStart(test_is_start))).toEqual({ ...initialState, test_is_start });
+    });
+    it("SET_TEST_IS_FINISHED", () => {
+        const test_is_finished = true;
+        expect(DoTest(initialState, actions.setTestIsFinished(test_is_finished))).toEqual({ ...initialState, test_is_finished });
     });
     it("SET_USER_ANS", () => {
         const user_ans = "ans", question_id = 1;

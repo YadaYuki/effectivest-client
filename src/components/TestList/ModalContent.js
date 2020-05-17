@@ -22,10 +22,10 @@ export default class ModalContent extends React.Component {
         this.setState({ ...this.state, [e.target.name]: e.target.value });
     }
     getParams(){
-        const {test_id} = this.props;
+        const {test_id,testname} = this.props;
         const { mode, minutes, seconds, question_num } = this.state;
         const time = minutes * 60 + seconds;
-        return qs.stringify({test_id,time,question_num,mode});
+        return qs.stringify({test_id,testname,time,question_num,mode});
     }
     render() {
         const { testname } = this.props;//test_id
