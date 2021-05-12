@@ -1,6 +1,6 @@
 export const initialState = {
     is_login:true,
-    user_token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1ODg4MTMwMTh9.NtqNHCT14qBJYmpECXudeMUxvwR3j30G7FR4HP68O9M",
+    user_token:`${process.env.REACT_APP_USER_TOKEN}`,
     username:"yadayuki",
     email:"yada.yuki@fuji.waseda.jp",
     password:"password",
