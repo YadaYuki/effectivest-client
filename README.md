@@ -1,7 +1,14 @@
-EFFECTIVESTのクライアントサイドです。ReactJSを用いて実装されております。
-src以下の各フォルダにはページごとに必要なコンポーネントが保存されています。
-CommonComponentフォルダにはヘッダーやタブメニューといった共通のコンポーネントが保存されています。
-URL:http://www.effectivest.com 
-「Let's start」ボタンでスタートします。
-### `npm start`
-http://localhost:3001　でアプリケーションが実行されます。
+# Frontend App of original Study App 「Effectivest」🥸
+- 「Effectivest」 is original application for studying effectively
+- Frontend App is implemented by React.js/Javascript/Redux/SPA
+- This service is currently closed, so only demo videos are available 😓
+# Demo 🤩
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/57289763/138626302-300a2218-0468-40ce-a36c-b71514f68b60.gif" alt="EffectivestのDemo Gif" />
+</div>
+
+
+# Design 😽
+
+You can see whole design from [here](https://www.figma.com/file/DMpu2uYdx1iqZmInLJlrbS/Effectivest?node-id=0%3A1)
