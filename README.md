@@ -2,12 +2,34 @@
 - 「Effectivest」 is original application for studying effectively
 - Frontend App is implemented by **React.js/Javascript/Redux/SPA**
 - This service is currently closed, so only demo videos are available 😓
+
+# Setup 
+
+
+
+Install dependencies
+
+```
+$ yarn install
+```
+
+Start locally
+
+```
+$ yarn start
+```
+
+Deploy to Firebase host
+
+```
+$ yarn deploy
+```
+
 # Demo 🤩
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/57289763/138626302-300a2218-0468-40ce-a36c-b71514f68b60.gif" alt="EffectivestのDemo Gif" />
 </div>
-
 
 # Design 😽
 Designed by **Figma**
